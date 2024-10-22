@@ -64,6 +64,10 @@ fn help() {
       -h, --help                       Display the concise help for this command
       -V, --version                    Display the uv version
 
+    Index options:
+          --allow-insecure-host <ALLOW_INSECURE_HOST>
+              Allow insecure connections to a host [env: UV_INSECURE_HOST=]
+
     Use `uv help <command>` for more information on a specific command.
 
 
@@ -133,6 +137,10 @@ fn help_flag() {
       -h, --help                       Display the concise help for this command
       -V, --version                    Display the uv version
 
+    Index options:
+          --allow-insecure-host <ALLOW_INSECURE_HOST>
+              Allow insecure connections to a host [env: UV_INSECURE_HOST=]
+
     Use `uv help` for more details.
 
     ----- stderr -----
@@ -200,6 +208,10 @@ fn help_short_flag() {
                                        `uv.toml`) [env: UV_NO_CONFIG=]
       -h, --help                       Display the concise help for this command
       -V, --version                    Display the uv version
+
+    Index options:
+          --allow-insecure-host <ALLOW_INSECURE_HOST>
+              Allow insecure connections to a host [env: UV_INSECURE_HOST=]
 
     Use `uv help` for more details.
 
@@ -813,6 +825,10 @@ fn help_with_global_option() {
       -h, --help                       Display the concise help for this command
       -V, --version                    Display the uv version
 
+    Index options:
+          --allow-insecure-host <ALLOW_INSECURE_HOST>
+              Allow insecure connections to a host [env: UV_INSECURE_HOST=]
+
     Use `uv help <command>` for more information on a specific command.
 
 
@@ -917,6 +933,10 @@ fn help_with_no_pager() {
                                        `uv.toml`) [env: UV_NO_CONFIG=]
       -h, --help                       Display the concise help for this command
       -V, --version                    Display the uv version
+
+    Index options:
+          --allow-insecure-host <ALLOW_INSECURE_HOST>
+              Allow insecure connections to a host [env: UV_INSECURE_HOST=]
 
     Use `uv help <command>` for more information on a specific command.
 

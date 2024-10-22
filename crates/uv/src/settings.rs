@@ -55,6 +55,7 @@ pub(crate) struct GlobalSettings {
     pub(crate) native_tls: bool,
     pub(crate) concurrency: Concurrency,
     pub(crate) connectivity: Connectivity,
+    pub(crate) allow_insecure_host: Vec<TrustedHost>,
     pub(crate) show_settings: bool,
     pub(crate) preview: PreviewMode,
     pub(crate) python_preference: PythonPreference,
@@ -71,6 +72,16 @@ impl GlobalSettings {
                 .unwrap_or(false),
         );
 
+        let allow_insecure_host = if let Some(allow_insecure_host) = &args.allow_insecure_host {
+            allow_insecure_host
+                .iter()
+                .filter_map(|value| value.clone().into_option())
+                .collect()
+        } else {
+            workspace
+                .and_then(|workspace| workspace.globals.allow_insecure_host.clone())
+                .unwrap_or_default()
+        };
         Self {
             quiet: args.quiet,
             verbose: args.verbose,
@@ -116,6 +127,7 @@ impl GlobalSettings {
             } else {
                 Connectivity::Online
             },
+            allow_insecure_host,
             show_settings: args.show_settings,
             preview,
             python_preference: args
@@ -1509,7 +1521,6 @@ impl PipUninstallSettings {
             requirement,
             python,
             keyring_provider,
-            allow_insecure_host,
             system,
             no_system,
             break_system_packages,
@@ -1530,12 +1541,6 @@ impl PipUninstallSettings {
                     target,
                     prefix,
                     keyring_provider,
-                    allow_insecure_host: allow_insecure_host.map(|allow_insecure_host| {
-                        allow_insecure_host
-                            .into_iter()
-                            .filter_map(Maybe::into_option)
-                            .collect()
-                    }),
                     ..PipOptions::default()
                 },
                 filesystem,
@@ -1834,7 +1839,6 @@ impl VenvSettings {
             index_args,
             index_strategy,
             keyring_provider,
-            allow_insecure_host,
             exclude_newer,
             no_project,
             link_mode,
@@ -1855,12 +1859,6 @@ impl VenvSettings {
                     system: flag(system, no_system),
                     index_strategy,
                     keyring_provider,
-                    allow_insecure_host: allow_insecure_host.map(|allow_insecure_host| {
-                        allow_insecure_host
-                            .into_iter()
-                            .filter_map(Maybe::into_option)
-                            .collect()
-                    }),
                     exclude_newer,
                     link_mode,
                     ..PipOptions::from(index_args)
@@ -1880,7 +1878,6 @@ pub(crate) struct InstallerSettingsRef<'a> {
     pub(crate) index_locations: &'a IndexLocations,
     pub(crate) index_strategy: IndexStrategy,
     pub(crate) keyring_provider: KeyringProviderType,
-    pub(crate) allow_insecure_host: &'a [TrustedHost],
     pub(crate) dependency_metadata: &'a DependencyMetadata,
     pub(crate) config_setting: &'a ConfigSettings,
     pub(crate) no_build_isolation: bool,
@@ -1903,7 +1900,6 @@ pub(crate) struct ResolverSettings {
     pub(crate) index_locations: IndexLocations,
     pub(crate) index_strategy: IndexStrategy,
     pub(crate) keyring_provider: KeyringProviderType,
-    pub(crate) allow_insecure_host: Vec<TrustedHost>,
     pub(crate) resolution: ResolutionMode,
     pub(crate) prerelease: PrereleaseMode,
     pub(crate) dependency_metadata: DependencyMetadata,
@@ -1922,7 +1918,6 @@ pub(crate) struct ResolverSettingsRef<'a> {
     pub(crate) index_locations: &'a IndexLocations,
     pub(crate) index_strategy: IndexStrategy,
     pub(crate) keyring_provider: KeyringProviderType,
-    pub(crate) allow_insecure_host: &'a [TrustedHost],
     pub(crate) resolution: ResolutionMode,
     pub(crate) prerelease: PrereleaseMode,
     pub(crate) dependency_metadata: &'a DependencyMetadata,
@@ -1954,7 +1949,6 @@ impl ResolverSettings {
             index_locations: &self.index_locations,
             index_strategy: self.index_strategy,
             keyring_provider: self.keyring_provider,
-            allow_insecure_host: &self.allow_insecure_host,
             resolution: self.resolution,
             prerelease: self.prerelease,
             dependency_metadata: &self.dependency_metadata,
@@ -1996,7 +1990,6 @@ impl From<ResolverOptions> for ResolverSettings {
             ),
             index_strategy: value.index_strategy.unwrap_or_default(),
             keyring_provider: value.keyring_provider.unwrap_or_default(),
-            allow_insecure_host: value.allow_insecure_host.unwrap_or_default(),
             config_setting: value.config_settings.unwrap_or_default(),
             no_build_isolation: value.no_build_isolation.unwrap_or_default(),
             no_build_isolation_package: value.no_build_isolation_package.unwrap_or_default(),
@@ -2025,7 +2018,6 @@ pub(crate) struct ResolverInstallerSettingsRef<'a> {
     pub(crate) index_locations: &'a IndexLocations,
     pub(crate) index_strategy: IndexStrategy,
     pub(crate) keyring_provider: KeyringProviderType,
-    pub(crate) allow_insecure_host: &'a [TrustedHost],
     pub(crate) resolution: ResolutionMode,
     pub(crate) prerelease: PrereleaseMode,
     pub(crate) dependency_metadata: &'a DependencyMetadata,
@@ -2052,7 +2044,6 @@ pub(crate) struct ResolverInstallerSettings {
     pub(crate) index_locations: IndexLocations,
     pub(crate) index_strategy: IndexStrategy,
     pub(crate) keyring_provider: KeyringProviderType,
-    pub(crate) allow_insecure_host: Vec<TrustedHost>,
     pub(crate) resolution: ResolutionMode,
     pub(crate) prerelease: PrereleaseMode,
     pub(crate) dependency_metadata: DependencyMetadata,
@@ -2089,7 +2080,6 @@ impl ResolverInstallerSettings {
             index_locations: &self.index_locations,
             index_strategy: self.index_strategy,
             keyring_provider: self.keyring_provider,
-            allow_insecure_host: &self.allow_insecure_host,
             resolution: self.resolution,
             prerelease: self.prerelease,
             dependency_metadata: &self.dependency_metadata,
@@ -2133,7 +2123,6 @@ impl From<ResolverInstallerOptions> for ResolverInstallerSettings {
             ),
             index_strategy: value.index_strategy.unwrap_or_default(),
             keyring_provider: value.keyring_provider.unwrap_or_default(),
-            allow_insecure_host: value.allow_insecure_host.unwrap_or_default(),
             config_setting: value.config_settings.unwrap_or_default(),
             no_build_isolation: value.no_build_isolation.unwrap_or_default(),
             no_build_isolation_package: value.no_build_isolation_package.unwrap_or_default(),
@@ -2178,7 +2167,6 @@ pub(crate) struct PipSettings {
     pub(crate) prefix: Option<Prefix>,
     pub(crate) index_strategy: IndexStrategy,
     pub(crate) keyring_provider: KeyringProviderType,
-    pub(crate) allow_insecure_host: Vec<TrustedHost>,
     pub(crate) no_build_isolation: bool,
     pub(crate) no_build_isolation_package: Vec<PackageName>,
     pub(crate) build_options: BuildOptions,
@@ -2235,7 +2223,6 @@ impl PipSettings {
             find_links,
             index_strategy,
             keyring_provider,
-            allow_insecure_host,
             no_build,
             no_binary,
             only_binary,
@@ -2287,7 +2274,6 @@ impl PipSettings {
             find_links: top_level_find_links,
             index_strategy: top_level_index_strategy,
             keyring_provider: top_level_keyring_provider,
-            allow_insecure_host: top_level_allow_insecure_host,
             resolution: top_level_resolution,
             prerelease: top_level_prerelease,
             dependency_metadata: top_level_dependency_metadata,
@@ -2319,7 +2305,6 @@ impl PipSettings {
         let find_links = find_links.combine(top_level_find_links);
         let index_strategy = index_strategy.combine(top_level_index_strategy);
         let keyring_provider = keyring_provider.combine(top_level_keyring_provider);
-        let allow_insecure_host = allow_insecure_host.combine(top_level_allow_insecure_host);
         let resolution = resolution.combine(top_level_resolution);
         let prerelease = prerelease.combine(top_level_prerelease);
         let dependency_metadata = dependency_metadata.combine(top_level_dependency_metadata);
@@ -2394,10 +2379,6 @@ impl PipSettings {
             keyring_provider: args
                 .keyring_provider
                 .combine(keyring_provider)
-                .unwrap_or_default(),
-            allow_insecure_host: args
-                .allow_insecure_host
-                .combine(allow_insecure_host)
                 .unwrap_or_default(),
             generate_hashes: args
                 .generate_hashes
@@ -2512,7 +2493,6 @@ impl<'a> From<ResolverInstallerSettingsRef<'a>> for ResolverSettingsRef<'a> {
             index_locations: settings.index_locations,
             index_strategy: settings.index_strategy,
             keyring_provider: settings.keyring_provider,
-            allow_insecure_host: settings.allow_insecure_host,
             resolution: settings.resolution,
             prerelease: settings.prerelease,
             dependency_metadata: settings.dependency_metadata,
@@ -2534,7 +2514,6 @@ impl<'a> From<ResolverInstallerSettingsRef<'a>> for InstallerSettingsRef<'a> {
             index_locations: settings.index_locations,
             index_strategy: settings.index_strategy,
             keyring_provider: settings.keyring_provider,
-            allow_insecure_host: settings.allow_insecure_host,
             dependency_metadata: settings.dependency_metadata,
             config_setting: settings.config_setting,
             no_build_isolation: settings.no_build_isolation,
@@ -2562,7 +2541,6 @@ pub(crate) struct PublishSettings {
     pub(crate) publish_url: Url,
     pub(crate) trusted_publishing: TrustedPublishing,
     pub(crate) keyring_provider: KeyringProviderType,
-    pub(crate) allow_insecure_host: Vec<TrustedHost>,
 }
 
 impl PublishSettings {
@@ -2579,9 +2557,7 @@ impl PublishSettings {
             trusted_publishing,
         } = publish;
         let ResolverInstallerOptions {
-            keyring_provider,
-            allow_insecure_host,
-            ..
+            keyring_provider, ..
         } = top_level;
 
         // Tokens are encoded in the same way as username/password
@@ -2605,16 +2581,6 @@ impl PublishSettings {
             keyring_provider: args
                 .keyring_provider
                 .combine(keyring_provider)
-                .unwrap_or_default(),
-            allow_insecure_host: args
-                .allow_insecure_host
-                .map(|allow_insecure_host| {
-                    allow_insecure_host
-                        .into_iter()
-                        .filter_map(Maybe::into_option)
-                        .collect()
-                })
-                .combine(allow_insecure_host)
                 .unwrap_or_default(),
         }
     }

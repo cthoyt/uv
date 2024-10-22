@@ -78,15 +78,6 @@ uv run [OPTIONS] [COMMAND]
 
 <p>This option is only available when running in a project.</p>
 
-</dd><dt><code>--allow-insecure-host</code> <i>allow-insecure-host</i></dt><dd><p>Allow insecure connections to a host.</p>
-
-<p>Can be provided multiple times.</p>
-
-<p>Expects to receive either a hostname (e.g., <code>localhost</code>), a host-port pair (e.g., <code>localhost:8080</code>), or a URL (e.g., <code>https://localhost</code>).</p>
-
-<p>WARNING: Hosts included in this list will not be verified against the system&#8217;s certificate store. Only use <code>--allow-insecure-host</code> in a secure network with verified sources, as it bypasses SSL verification and could expose you to MITM attacks.</p>
-
-<p>May also be set with the <code>UV_INSECURE_HOST</code> environment variable.</p>
 </dd><dt><code>--cache-dir</code> <i>cache-dir</i></dt><dd><p>Path to the cache directory.</p>
 
 <p>Defaults to <code>$HOME/Library/Caches/uv</code> on macOS, <code>$XDG_CACHE_HOME/uv</code> or <code>$HOME/.cache/uv</code> on Linux, and <code>%LOCALAPPDATA%\uv\cache</code> on Windows.</p>
@@ -665,16 +656,7 @@ uv add [OPTIONS] <PACKAGES|--requirements <REQUIREMENTS>>
 
 <h3 class="cli-reference">Options</h3>
 
-<dl class="cli-reference"><dt><code>--allow-insecure-host</code> <i>allow-insecure-host</i></dt><dd><p>Allow insecure connections to a host.</p>
-
-<p>Can be provided multiple times.</p>
-
-<p>Expects to receive either a hostname (e.g., <code>localhost</code>), a host-port pair (e.g., <code>localhost:8080</code>), or a URL (e.g., <code>https://localhost</code>).</p>
-
-<p>WARNING: Hosts included in this list will not be verified against the system&#8217;s certificate store. Only use <code>--allow-insecure-host</code> in a secure network with verified sources, as it bypasses SSL verification and could expose you to MITM attacks.</p>
-
-<p>May also be set with the <code>UV_INSECURE_HOST</code> environment variable.</p>
-</dd><dt><code>--branch</code> <i>branch</i></dt><dd><p>Branch to use when adding a dependency from Git</p>
+<dl class="cli-reference"><dt><code>--branch</code> <i>branch</i></dt><dd><p>Branch to use when adding a dependency from Git</p>
 
 </dd><dt><code>--cache-dir</code> <i>cache-dir</i></dt><dd><p>Path to the cache directory.</p>
 
@@ -1009,16 +991,7 @@ uv remove [OPTIONS] <PACKAGES>...
 
 <h3 class="cli-reference">Options</h3>
 
-<dl class="cli-reference"><dt><code>--allow-insecure-host</code> <i>allow-insecure-host</i></dt><dd><p>Allow insecure connections to a host.</p>
-
-<p>Can be provided multiple times.</p>
-
-<p>Expects to receive either a hostname (e.g., <code>localhost</code>), a host-port pair (e.g., <code>localhost:8080</code>), or a URL (e.g., <code>https://localhost</code>).</p>
-
-<p>WARNING: Hosts included in this list will not be verified against the system&#8217;s certificate store. Only use <code>--allow-insecure-host</code> in a secure network with verified sources, as it bypasses SSL verification and could expose you to MITM attacks.</p>
-
-<p>May also be set with the <code>UV_INSECURE_HOST</code> environment variable.</p>
-</dd><dt><code>--cache-dir</code> <i>cache-dir</i></dt><dd><p>Path to the cache directory.</p>
+<dl class="cli-reference"><dt><code>--cache-dir</code> <i>cache-dir</i></dt><dd><p>Path to the cache directory.</p>
 
 <p>Defaults to <code>$HOME/Library/Caches/uv</code> on macOS, <code>$XDG_CACHE_HOME/uv</code> or <code>$HOME/.cache/uv</code> on Linux, and <code>%LOCALAPPDATA%\uv\cache</code> on Windows.</p>
 
@@ -1327,15 +1300,6 @@ uv sync [OPTIONS]
 
 <p>Note that all optional dependencies are always included in the resolution; this option only affects the selection of packages to install.</p>
 
-</dd><dt><code>--allow-insecure-host</code> <i>allow-insecure-host</i></dt><dd><p>Allow insecure connections to a host.</p>
-
-<p>Can be provided multiple times.</p>
-
-<p>Expects to receive either a hostname (e.g., <code>localhost</code>), a host-port pair (e.g., <code>localhost:8080</code>), or a URL (e.g., <code>https://localhost</code>).</p>
-
-<p>WARNING: Hosts included in this list will not be verified against the system&#8217;s certificate store. Only use <code>--allow-insecure-host</code> in a secure network with verified sources, as it bypasses SSL verification and could expose you to MITM attacks.</p>
-
-<p>May also be set with the <code>UV_INSECURE_HOST</code> environment variable.</p>
 </dd><dt><code>--cache-dir</code> <i>cache-dir</i></dt><dd><p>Path to the cache directory.</p>
 
 <p>Defaults to <code>$HOME/Library/Caches/uv</code> on macOS, <code>$XDG_CACHE_HOME/uv</code> or <code>$HOME/.cache/uv</code> on Linux, and <code>%LOCALAPPDATA%\uv\cache</code> on Windows.</p>
@@ -1660,16 +1624,7 @@ uv lock [OPTIONS]
 
 <h3 class="cli-reference">Options</h3>
 
-<dl class="cli-reference"><dt><code>--allow-insecure-host</code> <i>allow-insecure-host</i></dt><dd><p>Allow insecure connections to a host.</p>
-
-<p>Can be provided multiple times.</p>
-
-<p>Expects to receive either a hostname (e.g., <code>localhost</code>), a host-port pair (e.g., <code>localhost:8080</code>), or a URL (e.g., <code>https://localhost</code>).</p>
-
-<p>WARNING: Hosts included in this list will not be verified against the system&#8217;s certificate store. Only use <code>--allow-insecure-host</code> in a secure network with verified sources, as it bypasses SSL verification and could expose you to MITM attacks.</p>
-
-<p>May also be set with the <code>UV_INSECURE_HOST</code> environment variable.</p>
-</dd><dt><code>--cache-dir</code> <i>cache-dir</i></dt><dd><p>Path to the cache directory.</p>
+<dl class="cli-reference"><dt><code>--cache-dir</code> <i>cache-dir</i></dt><dd><p>Path to the cache directory.</p>
 
 <p>Defaults to <code>$HOME/Library/Caches/uv</code> on macOS, <code>$XDG_CACHE_HOME/uv</code> or <code>$HOME/.cache/uv</code> on Linux, and <code>%LOCALAPPDATA%\uv\cache</code> on Windows.</p>
 
@@ -1952,15 +1907,6 @@ uv export [OPTIONS]
 
 <dl class="cli-reference"><dt><code>--all-extras</code></dt><dd><p>Include all optional dependencies</p>
 
-</dd><dt><code>--allow-insecure-host</code> <i>allow-insecure-host</i></dt><dd><p>Allow insecure connections to a host.</p>
-
-<p>Can be provided multiple times.</p>
-
-<p>Expects to receive either a hostname (e.g., <code>localhost</code>), a host-port pair (e.g., <code>localhost:8080</code>), or a URL (e.g., <code>https://localhost</code>).</p>
-
-<p>WARNING: Hosts included in this list will not be verified against the system&#8217;s certificate store. Only use <code>--allow-insecure-host</code> in a secure network with verified sources, as it bypasses SSL verification and could expose you to MITM attacks.</p>
-
-<p>May also be set with the <code>UV_INSECURE_HOST</code> environment variable.</p>
 </dd><dt><code>--cache-dir</code> <i>cache-dir</i></dt><dd><p>Path to the cache directory.</p>
 
 <p>Defaults to <code>$HOME/Library/Caches/uv</code> on macOS, <code>$XDG_CACHE_HOME/uv</code> or <code>$HOME/.cache/uv</code> on Linux, and <code>%LOCALAPPDATA%\uv\cache</code> on Windows.</p>
@@ -2280,16 +2226,7 @@ uv tree [OPTIONS]
 
 <h3 class="cli-reference">Options</h3>
 
-<dl class="cli-reference"><dt><code>--allow-insecure-host</code> <i>allow-insecure-host</i></dt><dd><p>Allow insecure connections to a host.</p>
-
-<p>Can be provided multiple times.</p>
-
-<p>Expects to receive either a hostname (e.g., <code>localhost</code>), a host-port pair (e.g., <code>localhost:8080</code>), or a URL (e.g., <code>https://localhost</code>).</p>
-
-<p>WARNING: Hosts included in this list will not be verified against the system&#8217;s certificate store. Only use <code>--allow-insecure-host</code> in a secure network with verified sources, as it bypasses SSL verification and could expose you to MITM attacks.</p>
-
-<p>May also be set with the <code>UV_INSECURE_HOST</code> environment variable.</p>
-</dd><dt><code>--cache-dir</code> <i>cache-dir</i></dt><dd><p>Path to the cache directory.</p>
+<dl class="cli-reference"><dt><code>--cache-dir</code> <i>cache-dir</i></dt><dd><p>Path to the cache directory.</p>
 
 <p>Defaults to <code>$HOME/Library/Caches/uv</code> on macOS, <code>$XDG_CACHE_HOME/uv</code> or <code>$HOME/.cache/uv</code> on Linux, and <code>%LOCALAPPDATA%\uv\cache</code> on Windows.</p>
 
@@ -2666,16 +2603,7 @@ uv tool run [OPTIONS] [COMMAND]
 
 <h3 class="cli-reference">Options</h3>
 
-<dl class="cli-reference"><dt><code>--allow-insecure-host</code> <i>allow-insecure-host</i></dt><dd><p>Allow insecure connections to a host.</p>
-
-<p>Can be provided multiple times.</p>
-
-<p>Expects to receive either a hostname (e.g., <code>localhost</code>), a host-port pair (e.g., <code>localhost:8080</code>), or a URL (e.g., <code>https://localhost</code>).</p>
-
-<p>WARNING: Hosts included in this list will not be verified against the system&#8217;s certificate store. Only use <code>--allow-insecure-host</code> in a secure network with verified sources, as it bypasses SSL verification and could expose you to MITM attacks.</p>
-
-<p>May also be set with the <code>UV_INSECURE_HOST</code> environment variable.</p>
-</dd><dt><code>--cache-dir</code> <i>cache-dir</i></dt><dd><p>Path to the cache directory.</p>
+<dl class="cli-reference"><dt><code>--cache-dir</code> <i>cache-dir</i></dt><dd><p>Path to the cache directory.</p>
 
 <p>Defaults to <code>$HOME/Library/Caches/uv</code> on macOS, <code>$XDG_CACHE_HOME/uv</code> or <code>$HOME/.cache/uv</code> on Linux, and <code>%LOCALAPPDATA%\uv\cache</code> on Windows.</p>
 
@@ -2969,16 +2897,7 @@ uv tool install [OPTIONS] <PACKAGE>
 
 <h3 class="cli-reference">Options</h3>
 
-<dl class="cli-reference"><dt><code>--allow-insecure-host</code> <i>allow-insecure-host</i></dt><dd><p>Allow insecure connections to a host.</p>
-
-<p>Can be provided multiple times.</p>
-
-<p>Expects to receive either a hostname (e.g., <code>localhost</code>), a host-port pair (e.g., <code>localhost:8080</code>), or a URL (e.g., <code>https://localhost</code>).</p>
-
-<p>WARNING: Hosts included in this list will not be verified against the system&#8217;s certificate store. Only use <code>--allow-insecure-host</code> in a secure network with verified sources, as it bypasses SSL verification and could expose you to MITM attacks.</p>
-
-<p>May also be set with the <code>UV_INSECURE_HOST</code> environment variable.</p>
-</dd><dt><code>--cache-dir</code> <i>cache-dir</i></dt><dd><p>Path to the cache directory.</p>
+<dl class="cli-reference"><dt><code>--cache-dir</code> <i>cache-dir</i></dt><dd><p>Path to the cache directory.</p>
 
 <p>Defaults to <code>$HOME/Library/Caches/uv</code> on macOS, <code>$XDG_CACHE_HOME/uv</code> or <code>$HOME/.cache/uv</code> on Linux, and <code>%LOCALAPPDATA%\uv\cache</code> on Windows.</p>
 
@@ -3268,15 +3187,6 @@ uv tool upgrade [OPTIONS] <NAME>...
 
 <dl class="cli-reference"><dt><code>--all</code></dt><dd><p>Upgrade all tools</p>
 
-</dd><dt><code>--allow-insecure-host</code> <i>allow-insecure-host</i></dt><dd><p>Allow insecure connections to a host.</p>
-
-<p>Can be provided multiple times.</p>
-
-<p>Expects to receive either a hostname (e.g., <code>localhost</code>), a host-port pair (e.g., <code>localhost:8080</code>), or a URL (e.g., <code>https://localhost</code>).</p>
-
-<p>WARNING: Hosts included in this list will not be verified against the system&#8217;s certificate store. Only use <code>--allow-insecure-host</code> in a secure network with verified sources, as it bypasses SSL verification and could expose you to MITM attacks.</p>
-
-<p>May also be set with the <code>UV_INSECURE_HOST</code> environment variable.</p>
 </dd><dt><code>--cache-dir</code> <i>cache-dir</i></dt><dd><p>Path to the cache directory.</p>
 
 <p>Defaults to <code>$HOME/Library/Caches/uv</code> on macOS, <code>$XDG_CACHE_HOME/uv</code> or <code>$HOME/.cache/uv</code> on Linux, and <code>%LOCALAPPDATA%\uv\cache</code> on Windows.</p>
@@ -4814,15 +4724,6 @@ uv pip compile [OPTIONS] <SRC_FILE>...
 
 <p>Only applies to <code>pyproject.toml</code>, <code>setup.py</code>, and <code>setup.cfg</code> sources.</p>
 
-</dd><dt><code>--allow-insecure-host</code> <i>allow-insecure-host</i></dt><dd><p>Allow insecure connections to a host.</p>
-
-<p>Can be provided multiple times.</p>
-
-<p>Expects to receive either a hostname (e.g., <code>localhost</code>), a host-port pair (e.g., <code>localhost:8080</code>), or a URL (e.g., <code>https://localhost</code>).</p>
-
-<p>WARNING: Hosts included in this list will not be verified against the system&#8217;s certificate store. Only use <code>--allow-insecure-host</code> in a secure network with verified sources, as it bypasses SSL verification and could expose you to MITM attacks.</p>
-
-<p>May also be set with the <code>UV_INSECURE_HOST</code> environment variable.</p>
 </dd><dt><code>--annotation-style</code> <i>annotation-style</i></dt><dd><p>The style of the annotation comments included in the output file, used to indicate the source of each package.</p>
 
 <p>Defaults to <code>split</code>.</p>
@@ -5231,15 +5132,6 @@ uv pip sync [OPTIONS] <SRC_FILE>...
 
 <dl class="cli-reference"><dt><code>--allow-empty-requirements</code></dt><dd><p>Allow sync of empty requirements, which will clear the environment of all packages</p>
 
-</dd><dt><code>--allow-insecure-host</code> <i>allow-insecure-host</i></dt><dd><p>Allow insecure connections to a host.</p>
-
-<p>Can be provided multiple times.</p>
-
-<p>Expects to receive either a hostname (e.g., <code>localhost</code>), a host-port pair (e.g., <code>localhost:8080</code>), or a URL (e.g., <code>https://localhost</code>).</p>
-
-<p>WARNING: Hosts included in this list will not be verified against the system&#8217;s certificate store. Only use <code>--allow-insecure-host</code> in a secure network with verified sources, as it bypasses SSL verification and could expose you to MITM attacks.</p>
-
-<p>May also be set with the <code>UV_INSECURE_HOST</code> environment variable.</p>
 </dd><dt><code>--break-system-packages</code></dt><dd><p>Allow uv to modify an <code>EXTERNALLY-MANAGED</code> Python installation.</p>
 
 <p>WARNING: <code>--break-system-packages</code> is intended for use in continuous integration (CI) environments, when installing into Python installations that are managed by an external package manager, like <code>apt</code>. It should be used with caution, as such Python installations explicitly recommend against modifications by other package managers (like uv or <code>pip</code>).</p>
@@ -5582,15 +5474,6 @@ uv pip install [OPTIONS] <PACKAGE|--requirement <REQUIREMENT>|--editable <EDITAB
 
 <p>Only applies to <code>pyproject.toml</code>, <code>setup.py</code>, and <code>setup.cfg</code> sources.</p>
 
-</dd><dt><code>--allow-insecure-host</code> <i>allow-insecure-host</i></dt><dd><p>Allow insecure connections to a host.</p>
-
-<p>Can be provided multiple times.</p>
-
-<p>Expects to receive either a hostname (e.g., <code>localhost</code>), a host-port pair (e.g., <code>localhost:8080</code>), or a URL (e.g., <code>https://localhost</code>).</p>
-
-<p>WARNING: Hosts included in this list will not be verified against the system&#8217;s certificate store. Only use <code>--allow-insecure-host</code> in a secure network with verified sources, as it bypasses SSL verification and could expose you to MITM attacks.</p>
-
-<p>May also be set with the <code>UV_INSECURE_HOST</code> environment variable.</p>
 </dd><dt><code>--break-system-packages</code></dt><dd><p>Allow uv to modify an <code>EXTERNALLY-MANAGED</code> Python installation.</p>
 
 <p>WARNING: <code>--break-system-packages</code> is intended for use in continuous integration (CI) environments, when installing into Python installations that are managed by an external package manager, like <code>apt</code>. It should be used with caution, as such Python installations explicitly recommend against modifications by other package managers (like uv or <code>pip</code>).</p>
@@ -5997,16 +5880,7 @@ uv pip uninstall [OPTIONS] <PACKAGE|--requirement <REQUIREMENT>>
 
 <h3 class="cli-reference">Options</h3>
 
-<dl class="cli-reference"><dt><code>--allow-insecure-host</code> <i>allow-insecure-host</i></dt><dd><p>Allow insecure connections to a host.</p>
-
-<p>Can be provided multiple times.</p>
-
-<p>Expects to receive either a hostname (e.g., <code>localhost</code>), a host-port pair (e.g., <code>localhost:8080</code>), or a URL (e.g., <code>https://localhost</code>).</p>
-
-<p>WARNING: Hosts included in this list will not be verified against the system&#8217;s certificate store. Only use <code>--allow-insecure-host</code> in a secure network with verified sources, as it bypasses SSL verification and could expose you to MITM attacks.</p>
-
-<p>May also be set with the <code>UV_INSECURE_HOST</code> environment variable.</p>
-</dd><dt><code>--break-system-packages</code></dt><dd><p>Allow uv to modify an <code>EXTERNALLY-MANAGED</code> Python installation.</p>
+<dl class="cli-reference"><dt><code>--break-system-packages</code></dt><dd><p>Allow uv to modify an <code>EXTERNALLY-MANAGED</code> Python installation.</p>
 
 <p>WARNING: <code>--break-system-packages</code> is intended for use in continuous integration (CI) environments, when installing into Python installations that are managed by an external package manager, like <code>apt</code>. It should be used with caution, as such Python installations explicitly recommend against modifications by other package managers (like uv or <code>pip</code>).</p>
 
@@ -6806,15 +6680,6 @@ uv venv [OPTIONS] [PATH]
 
 <p>WARNING: This option can lead to unexpected behavior if the existing virtual environment and the newly-created virtual environment are linked to different Python interpreters.</p>
 
-</dd><dt><code>--allow-insecure-host</code> <i>allow-insecure-host</i></dt><dd><p>Allow insecure connections to a host.</p>
-
-<p>Can be provided multiple times.</p>
-
-<p>Expects to receive either a hostname (e.g., <code>localhost</code>), a host-port pair (e.g., <code>localhost:8080</code>), or a URL (e.g., <code>https://localhost</code>).</p>
-
-<p>WARNING: Hosts included in this list will not be verified against the system&#8217;s certificate store. Only use <code>--allow-insecure-host</code> in a secure network with verified sources, as it bypasses SSL verification and could expose you to MITM attacks.</p>
-
-<p>May also be set with the <code>UV_INSECURE_HOST</code> environment variable.</p>
 </dd><dt><code>--cache-dir</code> <i>cache-dir</i></dt><dd><p>Path to the cache directory.</p>
 
 <p>Defaults to <code>$HOME/Library/Caches/uv</code> on macOS, <code>$XDG_CACHE_HOME/uv</code> or <code>$HOME/.cache/uv</code> on Linux, and <code>%LOCALAPPDATA%\uv\cache</code> on Windows.</p>
@@ -7061,15 +6926,6 @@ uv build [OPTIONS] [SRC]
 
 <p>If the workspace member does not exist, uv will exit with an error.</p>
 
-</dd><dt><code>--allow-insecure-host</code> <i>allow-insecure-host</i></dt><dd><p>Allow insecure connections to a host.</p>
-
-<p>Can be provided multiple times.</p>
-
-<p>Expects to receive either a hostname (e.g., <code>localhost</code>), a host-port pair (e.g., <code>localhost:8080</code>), or a URL (e.g., <code>https://localhost</code>).</p>
-
-<p>WARNING: Hosts included in this list will not be verified against the system&#8217;s certificate store. Only use <code>--allow-insecure-host</code> in a secure network with verified sources, as it bypasses SSL verification and could expose you to MITM attacks.</p>
-
-<p>May also be set with the <code>UV_INSECURE_HOST</code> environment variable.</p>
 </dd><dt><code>--build-constraint</code>, <code>-b</code> <i>build-constraint</i></dt><dd><p>Constrain build dependencies using the given requirements files when building distributions.</p>
 
 <p>Constraints files are <code>requirements.txt</code>-like files that only control the <em>version</em> of a build dependency that&#8217;s installed. However, including a package in a constraints file will <em>not</em> trigger the inclusion of that package on its own.</p>
@@ -7376,16 +7232,7 @@ uv publish [OPTIONS] [FILES]...
 
 <h3 class="cli-reference">Options</h3>
 
-<dl class="cli-reference"><dt><code>--allow-insecure-host</code> <i>allow-insecure-host</i></dt><dd><p>Allow insecure connections to a host.</p>
-
-<p>Can be provided multiple times.</p>
-
-<p>Expects to receive either a hostname (e.g., <code>localhost</code>), a host-port pair (e.g., <code>localhost:8080</code>), or a URL (e.g., <code>https://localhost</code>).</p>
-
-<p>WARNING: Hosts included in this list will not be verified against the system&#8217;s certificate store. Only use <code>--allow-insecure-host</code> in a secure network with verified sources, as it bypasses SSL verification and could expose you to MITM attacks.</p>
-
-<p>May also be set with the <code>UV_INSECURE_HOST</code> environment variable.</p>
-</dd><dt><code>--cache-dir</code> <i>cache-dir</i></dt><dd><p>Path to the cache directory.</p>
+<dl class="cli-reference"><dt><code>--cache-dir</code> <i>cache-dir</i></dt><dd><p>Path to the cache directory.</p>
 
 <p>Defaults to <code>$HOME/Library/Caches/uv</code> on macOS, <code>$XDG_CACHE_HOME/uv</code> or <code>$HOME/.cache/uv</code> on Linux, and <code>%LOCALAPPDATA%\uv\cache</code> on Windows.</p>
 
