@@ -5016,6 +5016,7 @@ dependencies = [
  "uv-cache-info",
  "uv-cache-key",
  "uv-client",
+ "uv-dirs",
  "uv-distribution-filename",
  "uv-extract",
  "uv-fs",

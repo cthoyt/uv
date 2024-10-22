@@ -1,15 +1,18 @@
+use std::collections::BTreeSet;
+use std::fmt::Write;
+use std::io::ErrorKind;
+use std::path::Path;
+
 use anyhow::Result;
 use fs_err as fs;
 use futures::stream::FuturesUnordered;
 use futures::StreamExt;
 use itertools::Itertools;
 use owo_colors::OwoColorize;
-use std::collections::BTreeSet;
-use std::fmt::Write;
-use std::path::Path;
 use tracing::debug;
 
 use uv_client::Connectivity;
+use uv_fs::Simplified;
 use uv_python::downloads::{DownloadResult, ManagedPythonDownload, PythonDownloadRequest};
 use uv_python::managed::{ManagedPythonInstallation, ManagedPythonInstallations};
 use uv_python::{PythonDownloads, PythonRequest, PythonVersionFile};
@@ -168,9 +171,37 @@ pub(crate) async fn install(
                 let managed = ManagedPythonInstallation::new(path.clone())?;
                 managed.ensure_externally_managed()?;
                 managed.ensure_canonical_executables()?;
+                match managed.create_bin_link() {
+                    Ok(executable) => {
+                        debug!("Installed {} executable to {}", key, executable.display());
+                    }
+                    Err(uv_python::managed::Error::LinkExecutable { from: _, to, err })
+                        if err.kind() == ErrorKind::AlreadyExists =>
+                    {
+                        // TODO(zanieb): Add `--force`
+                        if reinstall {
+                            fs::remove_file(&to)?;
+                            let executable = managed.create_bin_link()?;
+                            debug!(
+                                "Replaced {} executable at {}",
+                                key,
+                                executable.user_display()
+                            );
+                        } else {
+                            errors.push((
+                                key,
+                                anyhow::anyhow!(
+                                    "Executable already exists at `{}`. Use `--reinstall` to force replacement.",
+                                    to.user_display()
+                                ),
+                            ));
+                        }
+                    }
+                    Err(err) => return Err(err.into()),
+                }
             }
             Err(err) => {
-                errors.push((key, err));
+                errors.push((key, anyhow::Error::new(err)));
             }
         }
     }
@@ -234,7 +265,7 @@ pub(crate) async fn install(
                 "error".red().bold(),
                 key.green()
             )?;
-            for err in anyhow::Error::new(err).chain() {
+            for err in err.chain() {
                 writeln!(
                     printer.stderr(),
                     "  {}: {}",
